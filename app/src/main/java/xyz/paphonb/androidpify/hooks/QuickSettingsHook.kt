@@ -72,6 +72,7 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
     private val classSignalTileView by lazy { XposedHelpers.findClass("com.android.systemui.qs.SignalTileView", classLoader) }
     private val classCellTileView by lazy { XposedHelpers.findClass("com.android.systemui.qs.CellTileView", classLoader) }
     private val classSignalIcon by lazy { XposedHelpers.findClass("com.android.systemui.qs.CellTileView\$SignalIcon", classLoader) }
+<<<<<<< HEAD
     private val classBatteryMeterView by lazy { XposedHelpers.findClass("com.android.systemui.BatteryMeterView", classLoader) }
     private val classPageIndicator by lazy { XposedHelpers.findClass("com.android.systemui.qs.PageIndicator", classLoader) }
     private val classCellularTile by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.CellularTile", classLoader) }
@@ -80,6 +81,8 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
     private val classDrawableIcon by lazy { XposedHelpers.findClass("com.android.systemui.qs.tileimpl.QSTileImpl\$DrawableIcon", classLoader) }
     private val classBluetoothTile by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.BluetoothTile", classLoader) }
     private val classBluetoothBatteryMeterDrawable by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.BluetoothTile\$BluetoothBatteryDrawable", classLoader) }
+=======
+>>>>>>> parent of 5801604... Move battery percentage to the right
 
     val mSidePaddings by lazy { MainHook.modRes.getDimensionPixelSize(R.dimen.notification_side_paddings) }
     val mCornerRadius by lazy { MainHook.modRes.getDimensionPixelSize(R.dimen.notification_corner_radius) }
@@ -1049,19 +1052,6 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
                 }
             })
         }
-
-        findAndHookMethod(classBatteryMeterView, "updateShowPercent",
-                object : XC_MethodHook() {
-                    override fun afterHookedMethod(param: MethodHookParam) {
-                        val layout = param.thisObject as ViewGroup
-                        if (layout.childCount == 2 && layout.getChildAt(0) is TextView) {
-                            val text = layout.getChildAt(0) as TextView
-                            text.setPadding(text.paddingRight, text.paddingTop, text.paddingLeft, text.paddingBottom)
-                            layout.removeViewAt(0)
-                            layout.addView(text, 1)
-                        }
-                    }
-                })
     }
 
     fun qsPanelUpdateResources(qsPanel: ViewGroup) {

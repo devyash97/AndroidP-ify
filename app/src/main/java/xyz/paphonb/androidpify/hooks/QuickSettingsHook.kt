@@ -73,6 +73,7 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
     private val classCellTileView by lazy { XposedHelpers.findClass("com.android.systemui.qs.CellTileView", classLoader) }
     private val classSignalIcon by lazy { XposedHelpers.findClass("com.android.systemui.qs.CellTileView\$SignalIcon", classLoader) }
 <<<<<<< HEAD
+<<<<<<< HEAD
     private val classBatteryMeterView by lazy { XposedHelpers.findClass("com.android.systemui.BatteryMeterView", classLoader) }
     private val classPageIndicator by lazy { XposedHelpers.findClass("com.android.systemui.qs.PageIndicator", classLoader) }
     private val classCellularTile by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.CellularTile", classLoader) }
@@ -83,6 +84,8 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
     private val classRotationLockTile by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.RotationLockTile", classLoader) }
     private val classBluetoothTile by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.BluetoothTile", classLoader) }
     private val classBluetoothBatteryMeterDrawable by lazy { XposedHelpers.findClass("com.android.systemui.qs.tiles.BluetoothTile\$BluetoothBatteryDrawable", classLoader) }
+=======
+>>>>>>> parent of 5801604... Move battery percentage to the right
 =======
 >>>>>>> parent of 5801604... Move battery percentage to the right
 
@@ -1077,6 +1080,7 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
                 }
             })
         }
+<<<<<<< HEAD
     }
 
     fun qsPanelUpdateResources(qsPanel: ViewGroup) {
@@ -1095,6 +1099,8 @@ object QuickSettingsHook : IXposedHookLoadPackage, IXposedHookInitPackageResourc
                 0, qsPanel.paddingBottom)
 
         MainHook.logD("QSHook", "padding a: ${qsPanel.paddingLeft}, ${qsPanel.paddingTop}, ${qsPanel.paddingRight}, ${qsPanel.paddingBottom}")
+=======
+>>>>>>> parent of 5801604... Move battery percentage to the right
     }
 
     private fun getCircleColor(view: ViewGroup, state: Int): Int {
